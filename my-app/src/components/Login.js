@@ -1,23 +1,13 @@
 import React from 'react';
 import './Login.css';
 
-const axios = require('axios').default;
-
 function Login() {
-
-  function loginToSpotify() {
-    axios.get('/login')
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
 
   return (
     <div className="Login">
-      <button className="Login-button">Login to Spotify</button>
+      <a href='http://localhost:5000/login'>
+        <button className="Login-button">Login to Spotify</button>
+      </a>
     </div>
   );
 }

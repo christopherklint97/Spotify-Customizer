@@ -1,12 +1,21 @@
 const express = require('express'),
     app = express(),
     port = process.env.PORT || 5000,
-    cors = require('cors'),
-    axios = require('axios');
+    cors = require('cors');
 require('dotenv').config();
 
 // Activating cross origin resource sharing
-app.use(cors());
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
+
+app.use('/', (req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS,GET,PUT,POST,DELETE');
+    res.setHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+    next();
+})
 
 // Writes to the terminal once the server is running
 app.listen(port, () => console.log('Backend server live on ' + port));
